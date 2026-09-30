@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do ++</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>To-Do ++</h1>
+      <p class="subtitle">Your personal task manager</p>
+    </header>
+
+    <section class="main">
+      <form id="new-task-form" class="form">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="What needs to be done?"
+          aria-label="New task description"
+          />
+        <button type="submit" class="btn-add" aria-label="Add task">
+          + Add
+        </button>
+      </form>
+
+      <ul id="task-list" class="task-list"></ul>
+    </section>
+  </div>
+
+  <script type="module" src="src/index.ts"></script>
+</body>
+</html>
