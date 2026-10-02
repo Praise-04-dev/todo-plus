@@ -3,33 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>To-Do ++</title>
+  <title>Taskly – To-Do ++</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>To-Do ++</h1>
-      <p class="subtitle">Your personal task manager</p>
-    </header>
-
-    <section class="main">
-      <form id="new-task-form" class="form">
-        <input
-          type="text"
-          id="task-input"
-          placeholder="What needs to be done?"
-          aria-label="New task description"
-          />
-        <button type="submit" class="btn-add" aria-label="Add task">
-          + Add
-        </button>
-      </form>
-
-      <ul id="task-list" class="task-list"></ul>
-    </section>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <span class="brand-logo" aria-hidden="true">✓</span>
+        <span class="brand-name">Taskly</span>
+      </div>
+      <nav class="nav" aria-label="Main">
+        <button class="nav-item active view-nav" type="button" data-view="tasks" aria-current="page"><span aria-hidden="true">🏠</span> Tasks</button>
+        <button class="nav-item view-nav" type="button" data-view="calendar"><span aria-hidden="true">📅</span> Calendar</button>
+        <button class="nav-item view-nav" type="button" data-view="settings"><span aria-hidden="true">⚙️</span> Settings</button>
+      </nav>
+      <div class="filters">
+        <h2 class="filters-title">Filters</h2>
+        <button class="nav-item filter active" type="button" data-filter="all"><span aria-hidden="true">▦</span> All Tasks <span class="count" id="count-all">0</span></button>
+        <button class="nav-item filter" type="button" data-filter="today"><span aria-hidden="true">📆</span> Today <span class="count" id="count-today">0</span></button>
+        <button class="nav-item filter" type="button" data-filter="upcoming"><span aria-hidden="true">🕒</span> Upcoming <span class="count" id="count-upcoming">0</span></button>
+        <button class="nav-item filter" type="button" data-filter="completed"><span aria-hidden="true">✔</span> Completed <span class="count" id="count-completed">0</span></button>
+        <button class="nav-item filter" type="button" data-filter="important"><span aria-hidden="true">☆</span> Important <span class="count" id="count-important">0</span></button>
+      </div>
+    </aside>
+    <div class="content">
+      <header class="topbar">
+        <input type="search" id="search-input" class="search" placeholder="Search tasks..." aria-label="Search tasks" />
+        <div class="topbar-right">
+          <button type="button" id="bell-btn" class="bell icon-btn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">🔔<i class="dot" id="bell-dot" hidden></i></button>
+          <button type="button" class="profile" aria-label="Open settings"><span class="avatar" aria-hidden="true">P</span><span class="user-name">Praise</span></button>
+        </div>
+      </header>
+      <main class="main">
+        <div id="view-tasks">
+          <section class="greeting"><span class="sun" aria-hidden="true">☀️</span><div><h1 id="greeting-title">Good morning, Praise!</h1><p class="subtitle">Stay organized and get things done.</p></div></section>
+          <section class="stats" aria-label="Task summary"><div class="stat stat-total"><span class="stat-icon" aria-hidden="true">📋</span><div><strong id="stat-total">0</strong><span>Total Tasks</span></div></div><div class="stat stat-done"><span class="stat-icon" aria-hidden="true">✔</span><div><strong id="stat-done">0</strong><span>Completed</span></div></div><div class="stat stat-pending"><span class="stat-icon" aria-hidden="true">⏰</span><div><strong id="stat-pending">0</strong><span>Pending</span></div></div></section>
+          <section class="card add-card"><h2 class="card-title"><span class="plus" aria-hidden="true">+</span> Add New Task</h2><form id="new-task-form" class="form"><input type="text" id="task-input" placeholder="What needs to be done?" aria-label="New task description" autocomplete="off" /><input type="date" id="date-input" aria-label="Select date" /><select id="priority-input" aria-label="Priority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select><button type="submit" class="btn-add" aria-label="Add task">+ Add Task</button></form></section>
+          <section class="card list-card"><div class="list-head"><h2 class="card-title" id="list-title">My Tasks</h2><label class="sort">Sort by:<select id="sort-input" aria-label="Sort tasks"><option value="due">Due Date</option><option value="priority">Priority</option><option value="name">Name</option></select></label></div><ul id="task-list" class="task-list"></ul><p id="empty-state" class="empty" hidden>No tasks here yet. Add one above!</p></section>
+        </div>
+        <section id="view-calendar" class="card" hidden><div class="list-head"><h2 class="card-title" id="cal-title">Calendar</h2><div class="cal-nav"><button type="button" class="icon-btn" id="cal-prev" aria-label="Previous month">◀</button><button type="button" class="icon-btn" id="cal-today">Today</button><button type="button" class="icon-btn" id="cal-next" aria-label="Next month">▶</button></div></div><div id="cal-grid" class="cal-grid"></div></section>
+        <section id="view-settings" class="card" hidden><h2 class="card-title">Settings</h2><div class="settings"><label>Your name <input type="text" id="set-name" maxlength="30" /></label><label>Theme <select id="set-theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><div class="settings-actions"><button type="button" class="btn-add" id="clear-completed">Clear completed tasks</button><button type="button" class="btn-add danger-btn" id="clear-all">Delete all tasks</button></div></div></section>
+      </main>
+    </div>
   </div>
-
   <script type="module" src="src/index.ts"></script>
 </body>
 </html>

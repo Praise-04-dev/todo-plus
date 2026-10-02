@@ -1,0 +1,20 @@
+{
+  "name": "todo-plus",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "typescript": "^5.5.0"
+  },
+  "devDependencies": {
+    "vite": "^5.3.1",
+    "@types/node": "^20.14.2",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38"
+  }
+}
